@@ -7,17 +7,20 @@
     <style>
       body {
         font-family: Arial, sans-serif;
-        background-color: rgb(47, 55, 58);
+        background-color: rgb(53, 58, 67);
         display: flex;
         flex-direction: column;
         align-items: center;
         height: 100vh;
-        margin: 0;
+        margin: auto;
         color: white;
+        max-width: 2000px;
       }
 
       h1 {
-        font-size: 4em;
+        font-size: 5em;
+        letter-spacing: 3px;
+        text-align: center;
       }
       #titlebar {
         position: static;
@@ -51,8 +54,9 @@
       #stats2,
       #spacer {
         font-size: 24px;
+        font-weight: 700;
         margin-bottom: 20px;
-        max-width: 15em;
+        max-width: 17em;
       }
 
       #stats2 {
@@ -65,10 +69,10 @@
         align-items: center;
       }
       #symbol {
-        font-size: 60px;
+        font-size: 5em;
         margin-bottom: 20px;
         font-weight: 700;
-        text-shadow: rgb(0, 0, 0) 0px 4px 15px;
+        text-shadow: rgb(0, 0, 0) 0px 4px 18px;
         transition: opacity 0.3s ease-in-out; /* Add transition for smooth fade */
       }
       input {
@@ -107,6 +111,13 @@
         color: rgb(255, 115, 115);
         font-size: 18px;
       }
+
+      #mode {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+      }
+
       button {
         margin-top: 20px;
         font-size: 18px;
@@ -121,7 +132,7 @@
   <body>
     <div id="titlebar">
       <div id="statsbar">
-        <div id="stats">Correct: 0</div>
+        <div id="stats">Total Correct: 0</div>
         <div id="stats2">Right/Wrong Ratio (Last 20): 0%</div>
       </div>
       <h1>Coding Characters Practice</h1>
@@ -152,6 +163,7 @@
         </button>
       </div>
     </div>
+    <footer><p>Created by EJ Cabada version 2.2 © 2024</p></footer>
 
     <script>
       const generalSymbols = '=+-_()*&&!@:"{}[]/?.';
@@ -198,7 +210,9 @@
         const totalAttempts = last20Attempts.length;
         const ratio =
           totalAttempts > 0 ? (correctAttempts / totalAttempts) * 100 : 0;
-        document.getElementById("stats").innerText = `Correct: ${correctCount}`;
+        document.getElementById(
+          "stats"
+        ).innerText = `Total Correct: ${correctCount}`;
         // document.getElementById(
         //   "stats2"
         // ).innerText = `Right/Wrong Ratio (Last 20): ${ratio.toFixed(2)}%`;
