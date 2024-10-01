@@ -1,0 +1,154 @@
+body {
+  font-family: Arial, sans-serif;
+  background-color: rgb(53, 58, 67);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  height: 100vh;
+  min-height: 500px;
+  margin: auto;
+  color: white;
+  max-width: 2000px;
+}
+
+h1 {
+  font-size: 5em;
+  letter-spacing: 3px;
+  text-align: center;
+}
+#titlebar {
+  position: static;
+  width: 90%;
+  margin: 1em 5em;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-content: space-between;
+  align-items: center;
+}
+
+#statsbar {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-content: space-between;
+}
+
+#container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  align-content: space-around;
+  height: fit-content;
+  margin: 0 1em;
+}
+#stats,
+#stats2,
+#spacer {
+  font-size: 24px;
+  font-weight: 700;
+  margin-bottom: 20px;
+  max-width: 17em;
+}
+
+#stats2 {
+  text-align: right;
+  transition: color 0.3s ease-in-out; /* Add transition for smooth color change */
+}
+#maincontent {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+#symbol {
+  font-size: 5em;
+  margin-bottom: 20px;
+  font-weight: 700;
+  text-shadow: rgb(0, 0, 0) 0px 4px 18px;
+  transition: opacity 0.3s ease-in-out; /* Add transition for smooth fade */
+}
+input {
+  font-size: 24px;
+  padding: 35px;
+  width: 200px;
+  text-align: center;
+  border-radius: 10px;
+  border: none;
+}
+
+#inputBox {
+  box-shadow: rgba(0, 0, 0, 0.733) 0px 4px 15px;
+}
+
+#inputBox2 {
+  font-size: 18px;
+  padding: 5px;
+  min-width: 300px;
+  text-align: center;
+  border-radius: 10px;
+  border: none;
+}
+
+#clearButton {
+  font-size: 18px;
+  padding: 5px;
+  width: fit-content;
+  text-align: center;
+  border-radius: 10px;
+  border: none;
+}
+
+#errorMessage {
+  margin-top: 10px;
+  color: rgb(255, 115, 115);
+  font-size: 18px;
+}
+
+#mode {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+button {
+  margin-top: 20px;
+  font-size: 18px;
+  padding: 15px;
+  margin: 20px 10px;
+  border: none;
+  border-radius: 13px;
+  background-color: white;
+}
+
+#customDialog {
+  border-radius: 20px;
+  background-color: rgb(235, 235, 235);
+  box-shadow: 0px 0px 200px 40px rgb(0, 0, 0);
+}
+
+dialog::backdrop {
+  background-color: rgba(0, 0, 0, 0.592);
+}
+
+#charKeys {
+  font-size: 1em;
+  padding: .5em;
+}
+
+#homeKeys {
+  font-size: 1em;
+  padding: .5em;
+}
+
+.dbutton  {
+  padding: .5em;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.dbutton:hover  {
+  background-color: rgba(0, 0, 0, 0.093);
+  transition: opacity 0.3s ease-in-out;
+}
