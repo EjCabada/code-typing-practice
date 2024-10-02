@@ -13,11 +13,24 @@ let correctCount = 0;
 let characterCount = 0;
 let currentIndex = 0;
 let last20Attempts = [];
+let errors = {};
 
 function getRandomCharacter(set) {
-  const randomIndex = Math.floor(Math.random() * set.length);
-  return set[randomIndex];
+  const weightedCharacters = [];
+
+  // Add more occurrences for characters with higher errors
+  for (const char of set) {
+    const weight = errors[char] ? errors[char] + 1 : 1;
+    for (let i = 0; i < weight; i++) {
+      weightedCharacters.push(char);
+    }
+  }
+
+  // Return a random character based on weights
+  const randomIndex = Math.floor(Math.random() * weightedCharacters.length);
+  return weightedCharacters[randomIndex];
 }
+
 
 function updateSymbol() {
   const symbolDiv = document.getElementById("symbol");
@@ -76,32 +89,36 @@ function trackAttempt(success) {
   updateStats();
 }
 
-document
-  .getElementById("inputBox")
-  .addEventListener("input", function () {
-    const input = this.value;
-    const currentSymbol = document.getElementById("symbol").innerText;
+document.getElementById("inputBox").addEventListener("input", function () {
+  const input = this.value;
+  const currentSymbol = document.getElementById("symbol").innerText;
 
-    if (input === currentSymbol) {
-      correctCount++;
-      characterCount++;
-      trackAttempt(true);
-      alternateFlag = !alternateFlag;
-      this.style.backgroundColor = "rgb(114, 237, 124)"; // Flash green
-      setTimeout(() => {
-        this.style.backgroundColor = "white"; // Reset color
-      }, 100); // Adjust timing as needed
-      updateSymbol();
+  if (input === currentSymbol) {
+    correctCount++;
+    characterCount++;
+    trackAttempt(true);
+    alternateFlag = !alternateFlag;
+    this.style.backgroundColor = "rgb(114, 237, 124)"; // Flash green
+    setTimeout(() => {
+      this.style.backgroundColor = "white"; // Reset color
+    }, 100); // Adjust timing as needed
+    updateSymbol();
+  } else {
+    this.value = ""; // Clear input field on incorrect input
+    document.getElementById("errorMessage").innerText = `Input character was: ${input}`;
+    document.getElementById("errorMessage").style.color = "rgb(255, 75, 75)";
+
+    // Increment error count for the current character
+    if (errors[currentSymbol]) {
+      errors[currentSymbol]++;
     } else {
-      this.value = ""; // Clear input field on incorrect input
-      document.getElementById(
-        "errorMessage"
-      ).innerText = `Input character was: ${input}`;
-      document.getElementById("errorMessage").style.color =
-        "rgb(255, 75, 75)";
-      trackAttempt(false);
+      errors[currentSymbol] = 1;
     }
-  });
+
+    trackAttempt(false);
+  }
+});
+
 
   function switchMode(mode) {
     resetStats(); // Reset stats on mode change
@@ -188,7 +205,6 @@ function startTimer() {
 document
   .getElementById("inputBox")
   .addEventListener("input", function () {
-    // ... (your existing input event listener code) ...
 
     if (timedMode && !timerStarted) {
       startTimer();
@@ -196,7 +212,7 @@ document
     }
   });
 
-  const customModeButton = document.getElementById('customMode');
+const customModeButton = document.getElementById('customMode');
 const customDialog = document.getElementById('customDialog');
 const createCustomModeButton = document.getElementById('createCustomMode');
 const cancelCustomModeButton = document.getElementById('cancelCustomMode');
